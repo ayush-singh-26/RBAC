@@ -6,6 +6,7 @@ import ApiResponse from "../utils/ApiResponse.js";
 // SignUp Controller
 const signUp = asyncHandler(async (req, res) => {
     const { fullname, email, username, password,role} = req.body;
+    console.log({ email, username, password});
     if ([fullname, email, username, password].some((field) => field?.trim() === "")) {
         throw new ApiError(400, "All fields are required");
     }
