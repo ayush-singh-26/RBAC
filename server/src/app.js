@@ -6,6 +6,7 @@ const app=express();
 
 app.use(cors({
     origin: "https://rbac-livid-xi.vercel.app",
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
 }))
 
 app.use(express.json({limit: '16kb'}))
