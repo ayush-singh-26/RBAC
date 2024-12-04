@@ -5,8 +5,7 @@ import cookieParser from 'cookie-parser'
 const app=express();
 
 app.use(cors({
-    origin: "https://rbac-git-main-ayush-singhs-projects-5157515c.vercel.app",
-    
+    origin: "https://rbac-livid-xi.vercel.app",
 }))
 
 app.use(express.json({limit: '16kb'}))
