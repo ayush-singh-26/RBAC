@@ -16,11 +16,16 @@ function Login() {
 
 
     const onLogin = async (data) => {
+        console.log(data);
+        
         try {
             const response = await axios.post('/login', {
                 email: data.email,
                 password: data.password,
             });
+            
+            
+            
             setMessage(response.data.message);
             localStorage.setItem('token', response.data.data.accessToken);
             localStorage.setItem('role', response.data.data.user.role);
