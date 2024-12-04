@@ -17,7 +17,7 @@ function Login() {
 
     const onLogin = async (data) => {
         try {
-            const response = await axios.post('/api/v1/login', {
+            const response = await axios.post('/login', {
                 email: data.email,
                 password: data.password,
             });
