@@ -11,18 +11,8 @@ function SignUp() {
     // Handles form submission
     const onSignUp = async (data) => {
 
-        const formData = new FormData();
-
-        // Manually append each field from `data` to `FormData`
-        for (let key in data) {
-            formData.append(key, data[key]);
-        }
-
-        console.log(formData);
-        
-
         try {
-            const response = await axios.post(`api/v1/signUp`,{
+            const response = await axios.post(`${baseUrl}/api/v1/signUp`,{
 
                 fullname:data.fullname,
                 email: data.email,

@@ -19,7 +19,7 @@ function Login() {
         console.log(data);
         
         try {
-            const response = await axios.post('/login', {
+            const response = await axios.post(`${baseUrl}/api/v1/login`, {
                 email: data.email,
                 password: data.password,
             });
