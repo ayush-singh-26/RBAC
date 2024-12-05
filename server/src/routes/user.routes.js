@@ -13,6 +13,7 @@ router.route('/logout').post(verifyJWT, logoutUser);
 // Admin Routes
 router.route('/admin').get(verifyJWT,roleAuthorization("admin"),(req, res) => {
     res.json({ message: "Welcome, Admin!" });
+    
 });
 
 router.route('/moderator').get(verifyJWT,roleAuthorization("moderator","admin"),(req, res) => {

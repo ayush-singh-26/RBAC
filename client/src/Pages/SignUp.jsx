@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -8,12 +8,14 @@ import { baseUrl } from "./Url";
 function SignUp() {
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const [message, setMessage] = React.useState('');
+    const [loading,setLoading]=useState(false);
     const navigate = useNavigate();
 
     // Handles form submission
     const onSignUp = async (data) => {
 
         try {
+            setLoading(true);
             const response = await axios.post(`${baseUrl}/api/v1/signUp`,{
 
                 fullname:data.fullname,
@@ -26,14 +28,17 @@ function SignUp() {
             console.log("Response data:", response.data);
             if (response.data.success) {
                 setMessage(response.data.message);
+                setLoading(False);
                 localStorage.setItem('token', response.data.token);
                 console.log("Token saved:", response.data.token);
                 navigate('/login');
             } else {
                 setMessage(response.data.message);
+                setLoading(false);
             }
         } catch (e) {
             setMessage(e.response?.data?.message || 'Registration failed');
+            setLoading(false);
         }
     };
 
@@ -129,7 +134,7 @@ function SignUp() {
 
                     <div className="flex justify-center">
                         <button type="submit" className="p-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700">
-                            Sign Up
+                            {loading ? "Loading.....": "Sign Up" }
                         </button>
                     </div>
                     <p className="text-center text-gray-300 cursor-pointer" onClick={() => navigate('/login')}>

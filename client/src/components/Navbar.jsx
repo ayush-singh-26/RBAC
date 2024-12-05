@@ -2,8 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 function Navbar() {
-    const role = localStorage.getItem('role'); // Get role from local storage
+    const role = localStorage.getItem('role'); 
 
     return (
         <nav className="bg-gray-800 text-white p-4 flex justify-between items-center shadow-md">
@@ -26,6 +27,12 @@ function Navbar() {
     </Link>
     <Link
         to="/signUp"
+        className="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300"
+    >
+        Sign up
+    </Link>
+    <Link
+        to="/log"
         className="bg-blue-600 px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300"
     >
         Sign up

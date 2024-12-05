@@ -14,11 +14,11 @@ function Login() {
     } = useForm();
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
 
     const onLogin = async (data) => {
-        console.log(data);
-        
+        setLoading(true);
         try {
             const response = await axios.post(`${baseUrl}/api/v1/login`, {
                 email: data.email,
@@ -26,7 +26,7 @@ function Login() {
             });
             
             
-            
+            setLoading(false);
             setMessage(response.data.message);
             localStorage.setItem('token', response.data.data.accessToken);
             localStorage.setItem('role', response.data.data.user.role);
@@ -38,6 +38,7 @@ function Login() {
             else if (role === 'moderator') navigate('/dashBoard/moderator');
             else navigate('/dashBoard/user');
         } catch (e) {
+            setLoading(false);
             if (e.response && e.response.data && e.response.data.message) {
                 setMessage('Error: ' + e.response.data.message);
             } else {
@@ -81,7 +82,7 @@ function Login() {
                         </div>
                         <div className='flex justify-center'>
                             <button type='submit' className='p-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700'>
-                                Login
+                                {loading ? "Loading..." : "Login"}
                             </button>
                         </div>
                         <p className="text-center text-gray-300 cursor-pointer" onClick={() => navigate('/register')}>
