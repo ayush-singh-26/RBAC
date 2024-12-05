@@ -26,4 +26,22 @@ This project is a backend API built with **Node.js** and **Express**, implementi
    ```bash
    git clone https://github.com/ayush-singh-26/RBAC.git
    cd server
-   npm run start 
+   npm install
+2. Environment setUp
+   ```bash
+   PORT=8000
+   JWT_SECRET=your_jwt_secret
+3. Start the server
+   ```bash
+   npm run start
+
+## If you want to test frontend
+   ```bash
+   cd client
+   npm install
+   npm run dev
+you just need to signUp as role(admin/moderator/user) (just for demonstration)
+and login with the credentials
+
+
+
